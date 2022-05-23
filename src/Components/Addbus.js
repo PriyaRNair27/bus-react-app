@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import Header from './Header'
 
 const Addbus = () => {
     var [route,setroute]=useState("")
@@ -27,7 +28,7 @@ const Addbus = () => {
 
   return (
     <div>
-
+<Header/>
 
 <div className="container">
     <div className="row">
