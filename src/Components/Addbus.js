@@ -5,13 +5,13 @@ import Header from './Header'
 const Addbus = () => {
     var [route,setroute]=useState("")
     var [busname,setbusname]=useState("")
-    var [busreg,setbusreg]=useState("")
+    var [busregno,setbusreg]=useState("")
     var [owner,setowner]=useState("")
     var [contact,setcontact]=useState("")
     const subdata=()=>{
-        const data={"route":route,"busname":busname,"busreg":busreg,"owner":owner,"contact":contact}
+        const data={"route":route,"busname":busname,"busregno":busregno,"owner":owner,"contact":contact}
         console.log(data)
-    axios.post("https://mylinkurcodesapp.herokuapp.com/addcourse",data).then(
+    axios.post("http://localhost:4000/api/busmanage",data).then(
         (response)=>
         {
             console.log(response.data)

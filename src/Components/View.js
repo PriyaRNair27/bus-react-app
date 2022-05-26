@@ -1,65 +1,18 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import Header from './Header'
 
 const View = () => {
-    var viewlist=[
-        {
-            "route":"tvm-pta",
-            "busname":"maadhu",
-            "busreg":"9090",
-            "owner":"Rajesh",
-            "contact":"9078563423"
+  var  [viewlist,setviewlist]=useState([])
 
-        },
-        {
-            "route":"tvm-alpzha",
-            "busname":"lalgy",
-            "busreg":"7867",
-            "owner":"Madhavan",
-            "contact":"8908563423"
-
-        },
-        {
-            "route":"pta-ekm",
-            "busname":"ranibow",
-            "busreg":"6578",
-            "owner":"martin",
-            "contact":"8097663423"
-
-        },
-        {
-            "route":"tvla-ktym",
-            "busname":"sooraj",
-            "busreg":"9067",
-            "owner":"sreekumar",
-            "contact":"8067564598"
-
-        },
-        {
-            "route":"pta-plkd",
-            "busname":"sreehari",
-            "busreg":"6090",
-            "owner":"Rajesh",
-            "contact":"9078563423"
-
-        },
-        {
-            "route":"tvm-pta",
-            "busname":"raju",
-            "busreg":"4547",
-            "owner":"mahesh",
-            "contact":"9078563423"
-
-        },
-        {
-            "route":"tvm-ktym",
-            "busname":"parthan",
-            "busreg":"8079",
-            "owner":"rajeev",
-            "contact":"9089786756"
-
-        }
-    ]
+  var [loadstatus,setloadstatus] =useState([])   
+  axios.get("http://localhost:4000/api/bus").then(
+      (response)=>{
+  
+          console.log(response.data)
+          setviewlist(response.data.data) 
+          setloadstatus(false)
+      })
   return (
     <div>
         <Header/>
@@ -82,9 +35,9 @@ const View = () => {
     
         {viewlist.map((value,key)=>{
            return <tr>
-                <td>{value.route}</td>
-      <td>{value.busname}</td>
-      <td>{value.busreg}</td>
+                 <td>{value.route}</td>
+               <td>{value.busname}</td>
+      <td>{value.busregno}</td>
       <td>{value.owner}</td>
       <td>{value.contact}</td>
       </tr>
