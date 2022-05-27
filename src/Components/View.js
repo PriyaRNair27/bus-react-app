@@ -5,14 +5,31 @@ import Header from './Header'
 const View = () => {
   var  [viewlist,setviewlist]=useState([])
 
-  var [loadstatus,setloadstatus] =useState([])   
+  
   axios.get("http://localhost:4000/api/bus").then(
       (response)=>{
   
           console.log(response.data)
           setviewlist(response.data.data) 
-          setloadstatus(false)
+       
       })
+      const deleteApiCall=(id)=>{
+        const data={"_id":id}
+       console.log(data)
+       axios.post("http://localhost:4000/api/busdelete",data).then((response)=>
+       {
+           if(response.data.status=="success")
+           {
+               alert("success")
+           }
+           else
+           {
+               alert("error")
+           }
+       })
+      
+   }
+
   return (
     <div>
         <Header/>
@@ -40,6 +57,7 @@ const View = () => {
       <td>{value.busregno}</td>
       <td>{value.owner}</td>
       <td>{value.contact}</td>
+      <td> <button   onClick={()=>{deleteApiCall(value._id)}} className="bt btn-success">DELETE</button></td>
       </tr>
         })}
      
